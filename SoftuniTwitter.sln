@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftuniTwitter.Web", "SoftuniTwitter.Web\SoftuniTwitter.Web.csproj", "{E8604652-EE2F-465F-A58F-CE7540F2BC4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftuniTwitter.Data", "SoftuniTwitter.Data\SoftuniTwitter.Data.csproj", "{8B4228B3-CAF7-4FBF-B4D5-E63B09ED317B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftuniTwitter.Model", "SoftuniTwitter.Model\SoftuniTwitter.Model.csproj", "{BE169721-8E59-456F-89B4-E93F84151D05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8604652-EE2F-465F-A58F-CE7540F2BC4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8604652-EE2F-465F-A58F-CE7540F2BC4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8604652-EE2F-465F-A58F-CE7540F2BC4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8604652-EE2F-465F-A58F-CE7540F2BC4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B4228B3-CAF7-4FBF-B4D5-E63B09ED317B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B4228B3-CAF7-4FBF-B4D5-E63B09ED317B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B4228B3-CAF7-4FBF-B4D5-E63B09ED317B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B4228B3-CAF7-4FBF-B4D5-E63B09ED317B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE169721-8E59-456F-89B4-E93F84151D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE169721-8E59-456F-89B4-E93F84151D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE169721-8E59-456F-89B4-E93F84151D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE169721-8E59-456F-89B4-E93F84151D05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

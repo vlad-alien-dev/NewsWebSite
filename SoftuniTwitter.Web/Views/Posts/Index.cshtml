@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SoftuniTwitter.Model.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Posts (Index)</h2>
+
+@if (User.Identity.IsAuthenticated&&User.IsInRole("Editor"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+@using SoftuniTwitter.Web.App_Code
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "Details", new { id = item.PostId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+            </td>
+            <td>
+                @TextProcessing.Excerpt(item.Content)                
+            </td>
+            <td>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Editor")) {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PostId }) @(" |")
+                }
+                @Html.ActionLink("More", "Details", new { id = item.PostId }) 
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Editor")) { @("| ")
+                @Html.ActionLink("Delete", "Delete", new { id = item.PostId })
+                }
+            </td>
+        </tr>
+    }
+</table>

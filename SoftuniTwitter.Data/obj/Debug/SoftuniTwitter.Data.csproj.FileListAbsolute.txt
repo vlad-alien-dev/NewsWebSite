@@ -1,0 +1,16 @@
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\obj\Debug\SoftuniTwitter.Data.csprojResolveAssemblyReference.cache
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\bin\Debug\SoftuniTwitter.Data.dll.config
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\bin\Debug\SoftuniTwitter.Data.dll
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\bin\Debug\SoftuniTwitter.Data.pdb
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\bin\Debug\EntityFramework.dll
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\bin\Debug\SoftuniTwitter.Model.dll
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\bin\Debug\SoftuniTwitter.Model.pdb
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\bin\Debug\EntityFramework.xml
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\obj\Debug\SoftuniTwitter.Data.dll
+D:\projects\dot-net\ASP.Net-Softuni\SoftuniTwitter\SoftuniTwitter.Data\obj\Debug\SoftuniTwitter.Data.pdb

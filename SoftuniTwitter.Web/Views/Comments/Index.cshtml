@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SoftuniTwitter.Model.Comment>
+
+@{
+    ViewBag.Title = "Index-Comments";
+}
+
+<h2>Comments (Index)</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Post.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUserId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Post.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUserId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Comments", new { id = item.CommentId }, null)  |
+            @Html.ActionLink("Details", "Details", "Comments",  new { id=item.CommentId }, null) |
+            @Html.ActionLink("Delete", "Delete", "Comments", new { id = item.CommentId }, null) 
+        </td>
+    </tr>
+}
+
+</table>

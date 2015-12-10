@@ -1,0 +1,85 @@
+﻿@model SoftuniTwitter.Model.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @if (@ViewBag.FilePath!=null)
+        {
+         <dd>
+            <img src="@Url.Content(@ViewBag.FilePath)" alt="" />
+        </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Likes)
+        </dt>
+        <dd id="likes">
+            @Html.DisplayFor(model => model.Likes)
+        </dd>
+        <dd>
+            <span id="btnLike" value="1">👍</span>          
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.Partial("~/Views/Comments/Index.cshtml", Model.Comments)
+</p>
+<p>
+    @Html.Partial("~/Views/Comments/Create.cshtml", new ViewDataDictionary { { "PostId", Model.PostId } })
+</p>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PostId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+    var postId = JSON.parse('@Html.Raw(Json.Encode(ViewData["postId"]))');
+    $("#btnLike").click(function () {        
+        $.ajax({
+            type: "POST",
+            url: "../Like/" + postId,
+            data: { id: postId, like: $("#btnLike").attr("value") },
+            success: function (result) {
+                $("#likes").text(result);
+                var likeVal = -parseInt($("#btnLike").attr("value"));
+                // Hide Like Button & Show Dislike Button
+                $("#btnLike").attr("value", likeVal);
+                if (likeVal == "-1") {
+                    $("#btnLike").text("👎");
+                }
+                else(
+                $("#btnLike").text("👍"));
+        },
+        error: function (error) {
+            alert("error = " + error);
+        }
+    });
+    });
+</script>
