@@ -10,39 +10,24 @@
     <h4>Post</h4>
     <hr />
     <dl class="dl-horizontal">
-        @if (@ViewBag.FilePath!=null)
-        {
-         <dd>
-            <img src="@Url.Content(@ViewBag.FilePath)" alt="" />
-        </dd>
-        }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Likes)
-        </dt>
+        @if (@ViewBag.FilePath!=null)
+        {
+         <dd class="post-image-container">
+            <img src="@Url.Content(@ViewBag.FilePath)" alt="" />
+        </dd>
+        }
         <dd id="likes">
             @Html.DisplayFor(model => model.Likes)
         </dd>
         <dd>
             <span id="btnLike" value="1">👍</span>          
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationUserId)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ApplicationUser.UserName)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Content)
         </dd>

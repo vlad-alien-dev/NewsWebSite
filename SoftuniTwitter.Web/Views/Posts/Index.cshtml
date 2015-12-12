@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SoftuniTwitter.Model.Post>
+﻿@model IEnumerable<SoftuniTwitter.Web.ViewModels.PostIndexViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -15,9 +15,9 @@
 
 @using SoftuniTwitter.Web.App_Code
 
-
 <table class="table">
     <tr>
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -32,6 +32,12 @@
     @foreach (var item in Model)
     {
         <tr>
+            @if (item.FilePath != null)
+            {
+                <th>
+                    <img src="@Url.Content(item.FilePath)" alt="" />
+                </th>
+            }
             <td>
                 @Html.ActionLink(item.Name, "Details", new { id = item.PostId })
             </td>

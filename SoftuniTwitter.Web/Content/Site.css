@@ -40,3 +40,16 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+
+
+@media (min-width: 768px) {
+    .dl-horizontal dd {
+        margin-left: 0px;
+    }
+}
+
+.post-image-container{
+        height: 200px;
+    overflow: hidden;
+}

@@ -13,6 +13,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using SoftuniTwitter.Model.Enums;
 using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
+using SoftuniTwitter.Web.ViewModels;
 
 namespace SoftuniTwitter.Web.Controllers
 {
@@ -23,12 +26,32 @@ namespace SoftuniTwitter.Web.Controllers
         // GET: /Posts/
         public ActionResult Index()
         {
-            var posts = db.Posts.Take(3).OrderByDescending(x=>x.PostId).ToList();
+
+            var posts = (from p in db.Posts
+                         join fp in db.FilePaths
+                         on p.PostId equals fp.PostId
+                         select new
+                         {
+                             PostId = p.PostId,
+                             PostName = p.Name,
+                             PostContent = p.Content,
+                             Picture = fp.FileName,
+                             ApplicationUserId = p.ApplicationUserId
+                         }).ToList();
+            var postsList = new List<PostIndexViewModel>();
             foreach (var item in posts)
             {
-                item.ApplicationUser = db.Users.Single(u => u.ApplicationUserId==item.ApplicationUserId);
+                var postsViewModel = new PostIndexViewModel();
+                postsViewModel.PostId = item.PostId;
+                postsViewModel.Name = item.PostName;
+                postsViewModel.Content = item.PostContent;
+                postsViewModel.FilePath = String.Format("{0}{1}{2}", WebConfigurationManager.AppSettings["ImagesStorage"], 
+                                                                     item.Picture.Substring(0, item.Picture.LastIndexOf(".")),
+                                                                     "-thumbnail" + item.Picture.Substring(item.Picture.LastIndexOf(".")));
+                postsViewModel.ApplicationUser = db.Users.Single(u => u.ApplicationUserId == item.ApplicationUserId);
+                postsList.Add(postsViewModel);
             }
-            return View(posts);
+            return View(postsList);
         }
 
         // GET: /Posts/Details/5
@@ -45,9 +68,9 @@ namespace SoftuniTwitter.Web.Controllers
             }
             post.ApplicationUser = db.Users.Single(u => u.ApplicationUserId == post.ApplicationUserId);
             var filePaths = db.FilePaths.Where(x => x.PostId == post.PostId).Where(x => (int)x.FileType == 1).FirstOrDefault();
-            if (filePaths!=null)
+            if (filePaths != null)
             {
-               ViewBag.FilePath = WebConfigurationManager.AppSettings["ImagesStorage"]+filePaths.FileName;
+                ViewBag.FilePath = WebConfigurationManager.AppSettings["ImagesStorage"] + filePaths.FileName;
             }
             ViewBag.PostId = post.PostId;
             return View(post);
@@ -79,12 +102,20 @@ namespace SoftuniTwitter.Web.Controllers
                         FileType = FileType.PostImage,
                         PostId = post.PostId
                     };
-                    var fileExtension = postImage.FileName.Substring(postImage.FileName.IndexOf("."));
-                    if (fileExtension==".jpg"||fileExtension==".jpeg"||fileExtension==".png"||fileExtension==".gif"||fileExtension==".bmp")
+                    var fileExtension = postImage.FileName.Substring(postImage.FileName.LastIndexOf("."));
+                    if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png" || fileExtension == ".gif" || fileExtension == ".bmp")
                     {
+
+
                         string path = Path.Combine(Server.MapPath(System.Web.Configuration.WebConfigurationManager.AppSettings["ImagesStorage"]),
                    Path.GetFileName(upload.FileName));
                         upload.SaveAs(path);
+                        Image imgOriginal = Image.FromFile(path);
+                        Image imgResized = new Bitmap(imgOriginal, 200, 100);
+                        imgOriginal.Dispose();
+                        var imgThumbnail = path.Substring(0, path.LastIndexOf(".")) + "-thumbnail" + fileExtension;
+                        imgResized.Save(imgThumbnail);
+                        imgResized.Dispose();
                         post.FilePaths = new List<FilePath>();
                         post.FilePaths.Add(postImage);
                     }
@@ -117,7 +148,7 @@ namespace SoftuniTwitter.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="PostId,Name,Content,ApplicationUserId")] Post post)
+        public ActionResult Edit([Bind(Include = "PostId,Name,Content,ApplicationUserId")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -162,18 +193,18 @@ namespace SoftuniTwitter.Web.Controllers
         public JsonResult Like([Bind(Include = "PostId,Name,Content,ApplicationUserId")] int id, int like)
         {
 
-                Post post = db.Posts.Single(x => x.PostId == id);
-                post.Likes += like;
-                if (post.Likes<1)
-                {
-                    post.Likes = 0;
-                }
-                db.SaveChanges();
+            Post post = db.Posts.Single(x => x.PostId == id);
+            post.Likes += like;
+            if (post.Likes < 1)
+            {
+                post.Likes = 0;
+            }
+            db.SaveChanges();
 
-                return Json(post.Likes);
+            return Json(post.Likes);
         }
 
-        
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
